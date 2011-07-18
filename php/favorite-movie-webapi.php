@@ -2,12 +2,17 @@
 
 error_reporting(0);
 
-require 'tropo-webapi-php/tropo.class.php';
+require 'tropo.class.php';
 require 'lib/limonade.php';
 
 // This is a helper method, used when the caller initially sends in a valid input over the text channel.
 function valid_text(&$tropo, $initial_text) {
 	
+// Create a new instance of the Session object, and get the channel information.
+$session = new Session();
+$from_info = $session->getFrom();
+$network = $from_info['channel'];	
+		
 // Welcome prompt.
 $tropo->ask("Welcome to the Tropo PHP example for $network");
 
@@ -114,7 +119,7 @@ function app_hangup() {
 	$tropo = new Tropo();
 	
 	$tropo->say("Thanks for voting!");
-	$tropo->hangup;
+	$tropo->hangup();
 	return $tropo->RenderJson();
 }
 
@@ -124,7 +129,7 @@ function app_error() {
 	$tropo = new Tropo();
 	
 	$tropo->say("Something has gone wrong, please call back.");
-	$tropo->hangup;
+	$tropo->hangup();
 	return $tropo->RenderJson();
 }
 
