@@ -31,10 +31,10 @@ $tropo->ask("Welcome to the Tropo PHP example for $network");
 		}
 		
 	// Tell Tropo what to do next. This redirects to the instructions under dispatch_post('/hangup', 'app_hangup').
-	$tropo->on(array("event" => "continue", "next" => "testapp.php?uri=hangup"));
+	$tropo->on(array("event" => "continue", "next" => "favorite-movie-webapi.php?uri=hangup"));
 
 	// Tell Tropo what to do if there's an error. This redirects to the instructions under dispatch_post('/incomplete', 'app_incomplete').
-	$tropo->on(array("event" => "incomplete", "next" => "testapp.php?uri=incomplete"));
+	$tropo->on(array("event" => "incomplete", "next" => "favorite-movie-webapi.php?uri=incomplete"));
 
 }
 
@@ -69,8 +69,8 @@ function app_start() {
 	$tropo->ask("Which of these trilogies do you like the best?  Press 1 to vote for Lord of the Rings, press 2 for the original Star Wars, 3 for the Star Wars prequels, or press 4 for the Matrix", $options);
 
 	// Tell Tropo what to do when the user has entered input, or if there's a problem. This redirects to the instructions under dispatch_post('/choice', 'app_choice') or dispatch_post('/incomplete', 'app_incomplete').
-	$tropo->on(array("event" => "continue", "next" => "testapp.php?uri=choice", "say" => "Please hold."));
-	$tropo->on(array("event" => "incomplete", "next" => "testapp.php?uri=incomplete"));
+	$tropo->on(array("event" => "continue", "next" => "favorite-movie-webapi.php?uri=choice", "say" => "Please hold."));
+	$tropo->on(array("event" => "incomplete", "next" => "favorite-movie-webapi.php?uri=incomplete"));
 	
 	}
 
@@ -104,10 +104,10 @@ function app_choice() {
 		}
 
 	// Tell Tropo what to do next. This redirects to the instructions under dispatch_post('/hangup', 'app_hangup').
-	$tropo->on(array("event" => "continue", "next" => "testapp.php?uri=hangup"));
+	$tropo->on(array("event" => "continue", "next" => "favorite-movie-webapi.php?uri=hangup"));
 	
 	// Tell Tropo what to do if there's an problem, like a timeout. This redirects to the instructions under dispatch_post('/incomplete', 'app_incomplete').
-	$tropo->on(array("event" => "incomplete", "next" => "testapp.php?uri=incomplete"));
+	$tropo->on(array("event" => "incomplete", "next" => "favorite-movie-webapi.php?uri=incomplete"));
 	
 	// Render the JSON for the Tropo WebAPI to consume.
 	return $tropo->RenderJson();
